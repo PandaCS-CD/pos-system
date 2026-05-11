@@ -30,7 +30,7 @@
                                         <tr>
                                             <th scope="col" class="text-center" width="15%"><a href="#" id="selectAll" for="">เลือก</a></th>
                                             <th scope="col" class="text-center" width="8%">ลำดับ</th>
-                                            <th scope="col" class="text-center" width="25%">รูปภาพหมวดหมู่</th>
+
                                             <th scope="col" class="text-center">ชื่อหมวดหมู่</th>
                                             <th scope="col" class="text-center" width="15%">ลำดับ / สถานะ</th>
                                             <th scope="col" class="text-center" width="15%">แก้ไข / ลบ</th>
@@ -55,17 +55,6 @@
                                                     <input type="checkbox" name="selected_ids[]" value="<?= $row['category_id'] ?>" class="form-check-input message-checkbox" autocomplete="off">
                                                 </td>
                                                 <td class="text-center"><?= $num; ?></td>
-
-                                                <td class="text-center"><?php if (!empty($row['category_img'])): ?>
-                                                        <a href="<?= base_url('uploads/category/' . $row['category_img']); ?>" class="img-link">
-                                                            <img src="<?= base_url('uploads/category/' . $row['category_img']); ?>" class="img-fluid" style="max-width: 80px;">
-                                                        </a>
-                                                    <?php else: ?>
-                                                        <a href="<?= base_url('assets/images/imgs/No_Image.jpg'); ?>" class="img-link">
-                                                            <img src="<?= base_url('assets/images/imgs/No_Image.jpg'); ?>" class="img-fluid" style="max-width: 80px;">
-                                                        </a>
-                                                    <?php endif; ?>
-                                                </td>
                                                 <td><?= $row['category_name']; ?></td>
                                                 <td>
                                                     <div class="d-flex justify-content-center input-group px-2">

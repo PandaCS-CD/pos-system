@@ -34,7 +34,7 @@
 
     .receipt-print .receipt-header {
         text-align: center;
-        border-bottom: 1px dashed #333;
+        border-bottom: 1px dashed #333333;
         padding-bottom: 8px;
         margin-bottom: 8px;
     }

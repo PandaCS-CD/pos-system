@@ -11,12 +11,10 @@
                     <div class="card-body">
                         <form method="get" action="<?= admin_url('report') ?>" class="row g-2 align-items-end">
                             <div class="col-md-3">
-                                <label class="form-label">วันที่เริ่ม</label>
-                                <input type="date" name="date_from" class="form-control" value="<?= $date_from ?>">
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label">วันที่สิ้นสุด</label>
-                                <input type="date" name="date_to" class="form-control" value="<?= $date_to ?>">
+                                <label class="form-label">ช่วงวันที่</label>
+                                <input type="text" class="form-control dateRangePickerEN" id="dateRange" placeholder="เลือกช่วงวันที่" value="<?= date('d-m-Y') ?> to <?= date('d-m-Y') ?>" autocomplete="off">
+                                <input type="hidden" id="dateFrom" value="<?= date('Y-m-d') ?>">
+                                <input type="hidden" id="dateTo" value="<?= date('Y-m-d') ?>">
                             </div>
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary"><i class="fas fa-search me-1"></i>ดูรายงาน</button>
@@ -102,7 +100,7 @@
                                                     <td class="ps-3"><?= $i ?></td>
                                                     <td><?= $tp['product_name'] ?></td>
                                                     <td class="text-center"><?= number_format($tp['total_qty']) ?></td>
-                                                    <td class="text-end pe-3"><?= number_format($tp['total_amount'], 0) ?></td>
+                                                    <td class="text-end pe-3"><?= number_format($tp['total_amount'], 0) ?> ฿</td>
                                                 </tr>
                                             <?php endforeach;
                                         else: ?>

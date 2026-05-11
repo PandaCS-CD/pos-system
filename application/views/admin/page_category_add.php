@@ -14,8 +14,8 @@
                         <div class="card-body px-4">
 
                             <div class="form-group mb-3">
-                                <label for="category_img" class="form-label">รูปภาพหมวดหมู่ <span class="text-danger">*</span><small class="text-muted">แนะนำขนาด 500x500 พิกเซล</small></label>
-                                <input type="file" class="form-control image-crop-filepond" id="category_img" name="category_img" required>
+                                <label for="category_img" class="form-label">รูปภาพหมวดหมู่ <small class="text-muted">แนะนำขนาด 500x500 พิกเซล</small></label>
+                                <input type="file" class="form-control image-crop-filepond" id="category_img" name="category_img">
                             </div>
 
 
@@ -29,7 +29,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
-                                        <label for="category_meta" class="form-label">Meta Tags <span class="text-danger">*</span></label>
+                                        <label for="category_meta" class="form-label">Meta Tags</label>
                                         <textarea class="form-control" id="category_meta" name="category_meta"
                                             rows="10" placeholder='<meta name="description" content="รายละเอียดหน้า">
 <meta name="keywords" content="คำค้นหา">

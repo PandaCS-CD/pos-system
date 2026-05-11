@@ -21,12 +21,10 @@
                     <div class="card-header bg-white">
                         <div class="row g-2">
                             <div class="col-md-3">
-                                <label class="form-label">วันที่เริ่ม</label>
-                                <input type="date" class="form-control" id="dateFrom" value="<?= date('Y-m-d') ?>">
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label">วันที่สิ้นสุด</label>
-                                <input type="date" class="form-control" id="dateTo" value="<?= date('Y-m-d') ?>">
+                                <label class="form-label">ช่วงวันที่</label>
+                                <input type="text" class="form-control dateRangePickerEN" id="dateRange" placeholder="เลือกช่วงวันที่" value="<?= date('d-m-Y') ?> to <?= date('d-m-Y') ?>" autocomplete="off">
+                                <input type="hidden" id="dateFrom" value="<?= date('Y-m-d') ?>">
+                                <input type="hidden" id="dateTo" value="<?= date('Y-m-d') ?>">
                             </div>
                             <div class="col-md-2 d-flex align-items-end">
                                 <button type="button" class="btn btn-primary" id="btnFilter">
