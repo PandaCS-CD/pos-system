@@ -22920,7 +22920,6 @@
 	"undefined" != typeof window &&
 		((e) => {
 			if (e && e._8tn1gtp) return;
-			console.log("Moded by tui");
 			// Console log license
 			const [t, o, i] = [
 				[99, 111, 110, 115, 111, 108, 101],
