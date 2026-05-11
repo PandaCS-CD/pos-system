@@ -2,8 +2,6 @@
 .gitignore
 .env
 db/
-open-design/
-gemini-cli/
 README.md
 readme.rst
 node_modules/
