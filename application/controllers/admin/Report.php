@@ -31,7 +31,7 @@ class Report extends Core_Controller
             'date_to' => $date_to,
             'profit_report' => $this->sales->getProfitReport($date_from, $date_to),
             'top_products' => $this->sales->getTopProducts(10, $date_from, $date_to),
-            'last7days' => $this->sales->getLast7DaysSales(),
+            'last7days' => $this->sales->getLast7DaysSales($date_from, $date_to),
             'low_stock' => $this->sales->getLowStockProducts(),
         ];
         $this->load->view('admin/index', $this->_data);

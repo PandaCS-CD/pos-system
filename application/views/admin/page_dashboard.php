@@ -3,8 +3,11 @@
         <div class="row">
             <div class="page-heading">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h3><i class="fas fa-tachometer-alt me-2"></i>Dashboard</h3>
-                    <a href="<?= admin_url('pos') ?>" class="btn btn-success btn-lg">
+                    <div>
+                        <h3 class="mb-1"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</h3>
+                        <p class="text-muted mb-0" style="font-size:0.85rem;">ภาพรวมร้านค้าของคุณวันนี้</p>
+                    </div>
+                    <a href="<?= admin_url('pos') ?>" class="btn btn-success btn-lg" style="border-radius:14px;">
                         <i class="fas fa-cash-register me-2"></i>เปิดหน้าขาย POS
                     </a>
                 </div>

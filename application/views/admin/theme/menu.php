@@ -1,16 +1,5 @@
-<style>
-	.sidebar-wrapper .menu .sidebar-item.active .sidebar-link {
-		background-color: #25396f !important;
-	}
+<!-- Sidebar styles managed by pos-modern.css -->
 
-	.sidebar-link::after {
-		background-color: #25396f !important;
-	}
-
-	.sidebar-wrapper .menu .sidebar-link:hover {
-		background-color: #e1e1e1ff !important;
-	}
-</style>
 
 <?php
 // กรณีมีเมนูย่อย 

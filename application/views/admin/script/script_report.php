@@ -1,6 +1,31 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 <script>
     $(function() {
+        // ✅ Sync flatpickr date range → hidden inputs
+        var dateRangeEl = document.getElementById('dateRange');
+        if (dateRangeEl && dateRangeEl._flatpickr) {
+            dateRangeEl._flatpickr.destroy();
+        }
+        if (dateRangeEl) {
+            flatpickr(dateRangeEl, {
+                allowInput: true,
+                enableTime: false,
+                dateFormat: "d-m-Y",
+                mode: "range",
+                locale: "en",
+                disableMobile: true,
+                defaultDate: ["<?= date('d-m-Y', strtotime($date_from)) ?>", "<?= date('d-m-Y', strtotime($date_to)) ?>"],
+                onChange: function(selectedDates) {
+                    if (selectedDates.length === 2) {
+                        var fmt = function(d) {
+                            return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+                        };
+                        document.getElementById('dateFrom').value = fmt(selectedDates[0]);
+                        document.getElementById('dateTo').value = fmt(selectedDates[1]);
+                    }
+                }
+            });
+        }
         // Chart.js - ยอดขาย 7 วันล่าสุด
         const salesData = <?= json_encode($last7days) ?>;
         const labels = salesData.map(d => {

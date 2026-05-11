@@ -200,10 +200,15 @@ class SalesModel extends CI_Model
     /**
      * ยอดขาย 7 วันล่าสุด (สำหรับกราฟ)
      */
-    public function getLast7DaysSales()
+    public function getLast7DaysSales($date_from = null, $date_to = null)
     {
         $this->db->select('sale_date, COUNT(*) as total_bills, SUM(sale_total) as total_amount');
-        $this->db->where('sale_date >=', date('Y-m-d', strtotime('-6 days')));
+        if ($date_from && $date_to) {
+            $this->db->where('sale_date >=', $date_from);
+            $this->db->where('sale_date <=', $date_to);
+        } else {
+            $this->db->where('sale_date >=', date('Y-m-d', strtotime('-6 days')));
+        }
         $this->db->where('sale_status', 1);
         $this->db->group_by('sale_date');
         $this->db->order_by('sale_date', 'ASC');

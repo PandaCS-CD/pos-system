@@ -12,9 +12,9 @@
                         <form method="get" action="<?= admin_url('report') ?>" class="row g-2 align-items-end">
                             <div class="col-md-3">
                                 <label class="form-label">ช่วงวันที่</label>
-                                <input type="text" class="form-control dateRangePickerEN" id="dateRange" placeholder="เลือกช่วงวันที่" value="<?= date('d-m-Y') ?> to <?= date('d-m-Y') ?>" autocomplete="off">
-                                <input type="hidden" id="dateFrom" value="<?= date('Y-m-d') ?>">
-                                <input type="hidden" id="dateTo" value="<?= date('Y-m-d') ?>">
+                                <input type="text" class="form-control dateRangePickerEN" id="dateRange" placeholder="เลือกช่วงวันที่" value="<?= date('d-m-Y', strtotime($date_from)) ?> to <?= date('d-m-Y', strtotime($date_to)) ?>" autocomplete="off">
+                                <input type="hidden" id="dateFrom" name="date_from" value="<?= $date_from ?>">
+                                <input type="hidden" id="dateTo" name="date_to" value="<?= $date_to ?>">
                             </div>
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary"><i class="fas fa-search me-1"></i>ดูรายงาน</button>
@@ -68,7 +68,7 @@
                     <div class="col-md-8">
                         <div class="card mb-3">
                             <div class="card-header bg-white">
-                                <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>ยอดขาย 7 วันล่าสุด</h5>
+                                <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>ยอดขายรายวัน (<?= date('d/m/Y', strtotime($date_from)) ?> - <?= date('d/m/Y', strtotime($date_to)) ?>)</h5>
                             </div>
                             <div class="card-body">
                                 <canvas id="chartSales7Days" height="200"></canvas>
