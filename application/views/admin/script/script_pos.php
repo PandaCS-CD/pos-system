@@ -173,6 +173,7 @@
         const total = Math.max(0, subtotal - discount);
 
         $('#totalItems').text(totalItems);
+        $('#totalItemsBadge').text(totalItems + ' รายการ');
         $('#subtotalDisplay').text(subtotal.toFixed(2) + ' ฿');
         $('#discountDisplay').text('-' + discount.toFixed(2) + ' ฿');
         $('#totalDisplay').text(total.toFixed(2));
