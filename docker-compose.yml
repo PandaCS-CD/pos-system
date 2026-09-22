@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: pos_web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      # ใช้ชื่อ service 'db' เป็น Hostname
+      - DB_HOSTNAME=db
+      - DB_USERNAME=pos_user
+      - DB_PASSWORD=pos_password
+      - DB_DATABASE=pos_db
+    depends_on:
+      - db
+    networks:
+      - pos_network
+
+  db:
+    image: mysql:5.7
+    container_name: pos_db
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=pos_db
+      - MYSQL_USER=pos_user
+      - MYSQL_PASSWORD=pos_password
+    volumes:
+      - db_data:/var/lib/mysql
+      # นำเข้าฐานข้อมูลตั้งต้นอัตโนมัติเมื่อสร้าง Container ครั้งแรก
+      - ./db/pos_db.sql:/docker-entrypoint-initdb.d/pos_db.sql
+    networks:
+      - pos_network
+
+volumes:
+  db_data:
+
+networks:
+  pos_network:

@@ -1,0 +1,710 @@
+/* ============================================================
+   POS Modern Theme — Premium UI Override
+   ============================================================ */
+
+/* ---------- CSS Variables ---------- */
+:root {
+    --pm-primary: #6366f1;
+    --pm-primary-dark: #4f46e5;
+    --pm-primary-light: #818cf8;
+    --pm-accent: #8b5cf6;
+    --pm-sidebar-bg: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    --pm-sidebar-active: rgba(99, 102, 241, 0.25);
+    --pm-sidebar-hover: rgba(255, 255, 255, 0.08);
+    --pm-body-bg: #f1f5f9;
+    --pm-card-bg: #ffffff;
+    --pm-card-radius: 16px;
+    --pm-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+    --pm-card-shadow-hover: 0 4px 24px rgba(99, 102, 241, 0.12);
+    --pm-text: #1e293b;
+    --pm-text-muted: #64748b;
+    --pm-border: #e2e8f0;
+    --pm-success: #10b981;
+    --pm-danger: #ef4444;
+    --pm-warning: #f59e0b;
+    --pm-info: #06b6d4;
+    --pm-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- Global ---------- */
+body {
+    font-family: 'Inter', 'Noto Sans Thai', sans-serif !important;
+    background-color: var(--pm-body-bg) !important;
+    color: var(--pm-text);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Page Content Fade In ---------- */
+#main {
+    animation: pmFadeIn 0.4s ease-out;
+}
+
+@keyframes pmFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Custom Scrollbar ---------- */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+#sidebar .sidebar-wrapper {
+    background: var(--pm-sidebar-bg) !important;
+    border-right: none !important;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.08);
+}
+
+#sidebar .sidebar-wrapper .sidebar-header {
+    padding: 24px 20px 12px;
+}
+
+#sidebar .sidebar-wrapper .sidebar-header .logo i.fas {
+    color: var(--pm-primary-light) !important;
+    filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.4));
+}
+
+#sidebar .sidebar-wrapper .sidebar-header .logo h5 {
+    color: #f1f5f9 !important;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+#sidebar .sidebar-wrapper .sidebar-menu ul.menu hr {
+    border-color: rgba(255, 255, 255, 0.08);
+    margin: 8px 16px;
+}
+
+/* Sidebar Links */
+.sidebar-wrapper .menu .sidebar-link {
+    color: #94a3b8 !important;
+    border-radius: 10px !important;
+    margin: 2px 12px;
+    padding: 10px 14px !important;
+    transition: var(--pm-transition) !important;
+    font-weight: 500;
+    font-size: 0.88rem;
+}
+
+.sidebar-wrapper .menu .sidebar-link i {
+    color: #64748b !important;
+    transition: var(--pm-transition);
+    width: 22px;
+    font-size: 0.95rem;
+}
+
+.sidebar-wrapper .menu .sidebar-link:hover {
+    background-color: var(--pm-sidebar-hover) !important;
+    color: #e2e8f0 !important;
+}
+
+.sidebar-wrapper .menu .sidebar-link:hover i {
+    color: var(--pm-primary-light) !important;
+}
+
+/* Active State */
+.sidebar-wrapper .menu .sidebar-item.active .sidebar-link {
+    background: var(--pm-sidebar-active) !important;
+    color: #fff !important;
+    font-weight: 600;
+}
+
+.sidebar-wrapper .menu .sidebar-item.active .sidebar-link i {
+    color: var(--pm-primary-light) !important;
+}
+
+.sidebar-link::after {
+    background-color: var(--pm-primary) !important;
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+header.mb-3 nav.navbar {
+    background: var(--pm-card-bg) !important;
+    border-bottom: 1px solid var(--pm-border);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    padding: 8px 0;
+}
+
+.burger-btn i {
+    color: var(--pm-text) !important;
+    transition: var(--pm-transition);
+}
+
+.burger-btn:hover i {
+    color: var(--pm-primary) !important;
+}
+
+/* User Menu */
+.user-menu .avatar {
+    border: 2px solid var(--pm-primary-light);
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+    transition: var(--pm-transition);
+}
+
+.user-menu:hover .avatar {
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+.user-menu .avatar img {
+    border-radius: 50%;
+}
+
+.user-name h6 {
+    font-weight: 600 !important;
+    color: var(--pm-text) !important;
+    font-size: 0.9rem;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    border: 1px solid var(--pm-border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08) !important;
+    padding: 8px !important;
+    animation: pmDropdown 0.2s ease-out;
+}
+
+@keyframes pmDropdown {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-item {
+    border-radius: 8px !important;
+    padding: 8px 14px !important;
+    font-weight: 500;
+    transition: var(--pm-transition);
+}
+
+.dropdown-item:hover {
+    background: #f1f5f9 !important;
+    color: var(--pm-primary) !important;
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card {
+    border: 1px solid var(--pm-border) !important;
+    border-radius: var(--pm-card-radius) !important;
+    box-shadow: var(--pm-card-shadow) !important;
+    transition: var(--pm-transition);
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: var(--pm-card-shadow-hover) !important;
+}
+
+.card-header {
+    border-bottom: 1px solid var(--pm-border) !important;
+    padding: 16px 20px !important;
+}
+
+.card-header h5 {
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    color: var(--pm-text);
+}
+
+.card-body {
+    padding: 20px !important;
+}
+
+/* ============================================================
+   DASHBOARD GRADIENT CARDS
+   ============================================================ */
+.card.bg-primary {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+    border: none !important;
+}
+
+.card.bg-success {
+    background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%) !important;
+    border: none !important;
+}
+
+.card.bg-info {
+    background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%) !important;
+    border: none !important;
+}
+
+.card.bg-primary .card-body,
+.card.bg-success .card-body,
+.card.bg-info .card-body {
+    position: relative;
+}
+
+.card.bg-primary .card-body::before,
+.card.bg-success .card-body::before,
+.card.bg-info .card-body::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+}
+
+.card.bg-primary .card-body .fs-2,
+.card.bg-success .card-body .fs-2,
+.card.bg-info .card-body .fs-2 {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* Report border-start cards */
+.card.border-start.border-primary {
+    border-left-color: var(--pm-primary) !important;
+    border-left-width: 4px !important;
+}
+
+.card.border-start.border-success {
+    border-left-color: var(--pm-success) !important;
+}
+
+.card.border-start.border-danger {
+    border-left-color: var(--pm-danger) !important;
+}
+
+.card.border-start.border-info {
+    border-left-color: var(--pm-info) !important;
+}
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+.table {
+    font-size: 0.875rem;
+}
+
+.table thead th {
+    background: #f8fafc !important;
+    color: var(--pm-text-muted) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--pm-border) !important;
+    padding: 12px 16px !important;
+}
+
+.table tbody td {
+    padding: 10px 16px !important;
+    vertical-align: middle;
+    border-color: var(--pm-border) !important;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+    background-color: #f8fafc !important;
+}
+
+.table-hover>tbody>tr:hover>* {
+    background-color: #eef2ff !important;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+    border-radius: 10px !important;
+    font-weight: 600;
+    transition: var(--pm-transition) !important;
+    font-size: 0.875rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #4f46e5, #4338ca) !important;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+    transform: translateY(-1px);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.btn-success:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+    border: none !important;
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #06b6d4, #0891b2) !important;
+    border: none !important;
+    color: #fff !important;
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    border: none !important;
+    color: #fff !important;
+}
+
+.btn-outline-primary {
+    border-color: var(--pm-primary) !important;
+    color: var(--pm-primary) !important;
+    border-radius: 10px !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary.active {
+    background: var(--pm-primary) !important;
+    color: #fff !important;
+}
+
+.btn-outline-danger {
+    border-color: var(--pm-danger) !important;
+    color: var(--pm-danger) !important;
+}
+
+.btn-outline-danger:hover {
+    background: var(--pm-danger) !important;
+    color: #fff !important;
+}
+
+/* ============================================================
+   FORM CONTROLS
+   ============================================================ */
+.form-control,
+.form-select {
+    border-radius: 10px !important;
+    border-color: var(--pm-border) !important;
+    padding: 10px 14px;
+    transition: var(--pm-transition);
+    font-size: 0.875rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--pm-primary-light) !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+}
+
+.input-group-text {
+    border-radius: 10px !important;
+    border-color: var(--pm-border) !important;
+    background: #f8fafc;
+    font-size: 0.875rem;
+}
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+.badge {
+    border-radius: 8px !important;
+    padding: 5px 10px !important;
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+.badge.bg-primary {
+    background: var(--pm-primary) !important;
+}
+
+.badge.bg-success {
+    background: var(--pm-success) !important;
+}
+
+.badge.bg-danger {
+    background: var(--pm-danger) !important;
+}
+
+.badge.bg-warning {
+    background: var(--pm-warning) !important;
+    color: #fff !important;
+}
+
+/* ============================================================
+   MODALS
+   ============================================================ */
+.modal-content {
+    border-radius: 20px !important;
+    border: none !important;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15) !important;
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--pm-border);
+    padding: 20px 24px;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--pm-border);
+    padding: 16px 24px;
+}
+
+.modal-backdrop.show {
+    backdrop-filter: blur(4px);
+}
+
+/* ============================================================
+   PAGE HEADING
+   ============================================================ */
+.page-heading h3 {
+    font-weight: 800 !important;
+    font-size: 1.5rem !important;
+    color: var(--pm-text);
+    letter-spacing: -0.3px;
+}
+
+.page-heading {
+    margin-bottom: 8px;
+}
+
+/* ============================================================
+   POS PAGE OVERRIDES
+   ============================================================ */
+/* Product Grid */
+.product-grid {
+    gap: 10px !important;
+}
+
+.product-card {
+    border: 1px solid var(--pm-border) !important;
+    border-radius: 14px !important;
+    transition: var(--pm-transition) !important;
+    background: var(--pm-card-bg) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    /* Equal size cards */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+    height: 160px;
+    padding: 10px 8px;
+    cursor: pointer;
+    text-align: center;
+    overflow: hidden;
+}
+
+.product-card img {
+    width: 50px;
+    height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: cover;
+    border-radius: 10px !important;
+    margin-bottom: 4px;
+    flex-shrink: 0;
+}
+
+.product-card .product-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--pm-text) !important;
+    margin-bottom: 2px;
+    line-height: 1.2;
+    max-height: 2.4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.product-card .product-price-tag {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--pm-primary) !important;
+}
+
+.product-card .product-stock-tag {
+    font-size: 0.7rem;
+    color: var(--pm-text-muted);
+}
+
+.product-card:hover {
+    border-color: var(--pm-primary-light) !important;
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15) !important;
+    transform: translateY(-3px) !important;
+}
+
+.product-card .product-name {
+    color: var(--pm-text) !important;
+    font-weight: 600;
+}
+
+.product-card .product-price-tag {
+    color: var(--pm-primary) !important;
+    font-weight: 800;
+}
+
+.product-card img {
+    border-radius: 10px !important;
+}
+
+/* Cart Table */
+.cart-table th {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* Cart Total */
+.cart-total-section {
+    background: linear-gradient(135deg, #f8fafc, #eef2ff) !important;
+    border-radius: 14px !important;
+    border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.total-amount {
+    color: var(--pm-primary) !important;
+    font-weight: 800 !important;
+}
+
+/* Category Pills */
+.category-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.category-pills .btn {
+    border-radius: 20px !important;
+    font-size: 0.78rem !important;
+    padding: 5px 14px !important;
+    font-weight: 500;
+    margin: 0 !important;
+}
+
+.category-pills .btn.active {
+    background: var(--pm-primary) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+/* Barcode Input */
+.barcode-input {
+    border-radius: 12px !important;
+    font-size: 1rem !important;
+}
+
+/* Checkout Button */
+.btn-checkout {
+    border-radius: 14px !important;
+    font-size: 1.15rem !important;
+    padding: 14px !important;
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+.btn-checkout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+}
+
+/* Quick Cash */
+.quick-cash {
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    min-width: 52px;
+}
+
+/* ============================================================
+   SWEETALERT2 Override
+   ============================================================ */
+.swal2-popup {
+    border-radius: 20px !important;
+}
+
+/* ============================================================
+   DataTables Override
+   ============================================================ */
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 10px !important;
+    border: 1px solid var(--pm-border) !important;
+    padding: 6px 12px;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    border-radius: 8px !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: var(--pm-primary) !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    border: none !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    border-radius: 8px !important;
+}
+
+/* ============================================================
+   MISC
+   ============================================================ */
+.form-check-input:checked {
+    background-color: var(--pm-primary);
+    border-color: var(--pm-primary);
+}
+
+a {
+    color: var(--pm-primary);
+}
+
+a:hover {
+    color: var(--pm-primary-dark);
+}
+
+/* Sidebar toggler responsive fix */
+@media (max-width: 1199px) {
+    #sidebar .sidebar-wrapper {
+        z-index: 1050;
+    }
+}

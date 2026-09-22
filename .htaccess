@@ -1,0 +1,81 @@
+# ===============================================================
+# CI3 Production .htaccess
+# ป้องกัน bot scan, block ไฟล์สำคัญ, block PHP ใน assets/uploads
+# Compatible Apache 2.4+ / Shared Hosting
+# ===============================================================
+
+# กำหนด default index
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # ถ้าเว็บอยู่ใน subfolder ให้ uncomment และแก้ path
+    # RewriteBase /your_subfolder/
+
+
+    # -------------------------------
+    # Block PHP ใน assets / uploads (ถ้าไม่มี PHP จริง ๆ)
+    # -------------------------------
+    #<FilesMatch "^(assets|uploads)/.*.php$">
+        #Require all denied
+    #</FilesMatch>
+
+    # -------------------------------
+    # Block direct access application, system, tests folder
+    # -------------------------------
+    RewriteRule ^(application|system|tests)/ - [F,L,NC]
+
+   
+
+    # -------------------------------
+    # Block common scan path จาก CMS ยอดนิยม
+    # -------------------------------
+    RewriteCond %{REQUEST_URI} ^/wp-login.php$ [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/wp-admin [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/xmlrpc.php$ [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/vendor [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/config.json$ [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/composer.(json|lock)$ [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/core [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/modules [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/sites [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/typo3 [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/autodiscover/autodiscover.xml$ [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/owa/auth [NC]
+    RewriteRule .* - [F,L]
+
+    # -------------------------------
+    # Block common scan bot / admin page attempts
+    # -------------------------------
+    RewriteCond %{REQUEST_URI} ^/(admin)$ [NC]
+    RewriteRule ^.*$ - [L]
+
+    # -------------------------------
+    # CI3 Rewrite Rule หลัก
+    # ทุก request ที่ไม่ใช่ index.php, assets, install, update
+    # จะถูกส่งไป index.php
+    # -------------------------------
+    RewriteCond $1 !^(index.php|assets|install|update)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?/$1 [L]
+</IfModule>
+
+# -------------------------------
+# Extra Security Headers (optional)
+# -------------------------------
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# -------------------------------
+# Block Google AdSense script
+# -------------------------------
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTP_HOST} ^yourdomain\.com$ [NC]
+    RewriteCond %{QUERY_STRING} (^|&)client=ca-pub-4785874146655167 [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/pagead/js/adsbygoogle\.js [NC]
+    RewriteRule .* - [F,L]
+</IfModule>
