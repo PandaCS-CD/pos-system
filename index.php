@@ -13,12 +13,24 @@ if (file_exists($envFile)) {
 		}
 		if (strpos($line, '=') !== false) {
 			list($key, $value) = array_map('trim', explode('=', $line, 2));
-			if (!array_key_exists($key, $_SERVER) && !array_key_exists($key, $_ENV)) {
-				putenv("$key=$value");
-				$_ENV[$key] = $value;
-				$_SERVER[$key] = $value;
-			}
+			$value = trim($value, "\"' \t\n\r\0\x0B");
+			@putenv("$key=$value");
+			$_ENV[$key] = $value;
+			$_SERVER[$key] = $value;
 		}
+	}
+}
+
+if (!function_exists('env')) {
+	function env($key, $default = null) {
+		if (isset($_ENV[$key]) && $_ENV[$key] !== '') {
+			return $_ENV[$key];
+		}
+		if (isset($_SERVER[$key]) && $_SERVER[$key] !== '') {
+			return $_SERVER[$key];
+		}
+		$val = @getenv($key);
+		return ($val !== false && $val !== '') ? $val : $default;
 	}
 }
 
@@ -88,18 +100,15 @@ define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'developm
  */
 switch (ENVIRONMENT) {
 	case 'development':
-		error_reporting(-1);
+		error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
 		ini_set('display_errors', 1);
 		break;
 
 	case 'testing':
 	case 'production':
 		ini_set('display_errors', 0);
-		if (version_compare(PHP_VERSION, '5.3', '>=')) {
-			error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
-		} else {
-			error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_USER_NOTICE);
-		}
+		// Note: 2048 is E_STRICT (avoid referencing deprecated E_STRICT constant in PHP 8.4+)
+		error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~2048 & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
 		break;
 
 	default:

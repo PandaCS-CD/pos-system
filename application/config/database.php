@@ -73,20 +73,34 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+$get_db_env = function($key, $default = '') {
+	if (function_exists('env')) {
+		return env($key, $default);
+	}
+	if (isset($_ENV[$key]) && $_ENV[$key] !== '') {
+		return $_ENV[$key];
+	}
+	if (isset($_SERVER[$key]) && $_SERVER[$key] !== '') {
+		return $_SERVER[$key];
+	}
+	$val = @getenv($key);
+	return ($val !== false && $val !== '') ? $val : $default;
+};
+
 $db['default'] = array(
 	'dsn' => '',
-	'hostname' => getenv('DB_HOSTNAME') ?: 'localhost',
-	'username' => getenv('DB_USERNAME') ?: 'root',
-	'password' => getenv('DB_PASSWORD') ?: 'root',
-	'database' => getenv('DB_DATABASE') ?: 'pos_db',
-	'dbdriver' => getenv('DB_DRIVER') ?: 'mysqli',
+	'hostname' => $get_db_env('DB_HOSTNAME', '127.0.0.1'),
+	'username' => $get_db_env('DB_USERNAME', 'root'),
+	'password' => $get_db_env('DB_PASSWORD', 'root'),
+	'database' => $get_db_env('DB_DATABASE', 'pos_db'),
+	'dbdriver' => $get_db_env('DB_DRIVER', 'mysqli'),
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
 	'cachedir' => '',
-	'char_set' => getenv('DB_CHARSET') ?: 'utf8mb4',
-	'dbcollat' => getenv('DB_COLLATION') ?: 'utf8mb4_unicode_ci',
+	'char_set' => $get_db_env('DB_CHARSET', 'utf8mb4'),
+	'dbcollat' => $get_db_env('DB_COLLATION', 'utf8mb4_unicode_ci'),
 	'swap_pre' => '',
 	'encrypt' => FALSE,
 	'compress' => FALSE,
